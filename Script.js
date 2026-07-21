@@ -2,18 +2,46 @@ let studentName = "";
 let score = 0;
 
 let correctWords = [
-    "دَر",
-    "دریا",
-    "دوست",
-    "دندان",
-    "دست",
-    "دارکوب",
-    "درخت",
-    "دیوار",
-    "دارو",
-    "دُلمه",
-    "داغ",
-    "دِل‌درد"
+    
+    const words = [
+
+{word:"دَر",emoji:"🚪",correct:true},
+
+{word:"دریا",emoji:"🌊",correct:true},
+
+{word:"دوست",emoji:"🤝",correct:true},
+
+{word:"دندان",emoji:"🦷",correct:true},
+
+{word:"دست",emoji:"✋",correct:true},
+
+{word:"دارکوب",emoji:"🐦",correct:true},
+
+{word:"درخت",emoji:"🌳",correct:true},
+
+{word:"دیوار",emoji:"🧱",correct:true},
+
+{word:"دارو",emoji:"💊",correct:true},
+
+{word:"دُلمه",emoji:"🍲",correct:true},
+
+{word:"داغ",emoji:"🔥",correct:true},
+
+{word:"دِل‌درد",emoji:"❤️",correct:true},
+
+{word:"باد",emoji:"🌬️",correct:false},
+
+{word:"سیب",emoji:"🍎",correct:false},
+
+{word:"ماه",emoji:"🌙",correct:false},
+
+{word:"گربه",emoji:"🐱",correct:false},
+
+{word:"گل",emoji:"🌸",correct:false},
+
+{word:"خورشید",emoji:"☀️",correct:false}
+
+];
 ];
 
 let wrongWords = [
@@ -96,7 +124,16 @@ function createCards(){
 
         card.className="wordCard";
 
-        card.innerHTML=word;
+        card.innerHTML =
+`
+<div style="font-size:55px">
+${item.emoji}
+</div>
+
+<div style="margin-top:10px">
+${item.word}
+</div>
+`;
 
 
         card.onclick=function(){
