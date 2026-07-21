@@ -175,6 +175,7 @@ function checkWord(word,card){
 
         card.classList.add("correct");
 
+        createStars();
 
         document.getElementById("message").innerHTML =
         "🌟 آفرین! این کلمه با د شروع می‌شود";
@@ -226,5 +227,34 @@ document.getElementById("resultName").innerHTML =
 document.getElementById("finalScore").innerHTML =
 score + " از " + correctWords.length;
 
+
+}
+function createStars(){
+
+for(let i=0;i<15;i++){
+
+let star=document.createElement("div");
+
+star.innerHTML="⭐";
+
+star.style.position="fixed";
+
+star.style.left=Math.random()*window.innerWidth+"px";
+
+star.style.top=Math.random()*window.innerHeight+"px";
+
+star.style.fontSize="30px";
+
+star.style.zIndex="999";
+
+document.body.appendChild(star);
+
+setTimeout(()=>{
+
+star.remove();
+
+},1000);
+
+}
 
 }
