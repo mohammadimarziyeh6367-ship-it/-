@@ -1,3 +1,4 @@
+alert("بازی آماده است");
 let studentName = "";
 let score = 0;
 
