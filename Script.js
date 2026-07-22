@@ -212,7 +212,14 @@ function checkWord(word,card){
     }
 
 }
+let percent =
+(selectedCorrect / correctWords.length) * 100;
 
+document.getElementById("progress").style.width =
+percent + "%";
+
+document.getElementById("progressText").innerHTML =
+Math.round(percent) + "%";
 
 
 // پایان بازی
