@@ -180,7 +180,9 @@ function checkWord(word,card){
         document.getElementById("message").innerHTML =
         "🌟 آفرین! این کلمه با د شروع می‌شود";
 
-
+       
+        document.querySelector(".speech").innerHTML =
+        "👏 عالی بود! یک ستاره گرفتی ⭐";
     }
 
     else{
@@ -192,6 +194,9 @@ function checkWord(word,card){
         document.getElementById("message").innerHTML =
         "😊 دوباره فکر کن";
 
+       document.querySelector(".speech").innerHTML =
+           
+  "😊 دوباره نگاه کن، تو می‌تونی!";
 
     }
 
