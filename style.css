@@ -364,3 +364,55 @@ gap:10px;
 }
 
 }
+.character{
+
+text-align:center;
+
+margin:20px;
+
+}
+
+
+.character img{
+
+width:150px;
+
+animation:bounce 2s infinite;
+
+}
+
+
+.speech{
+
+background:white;
+
+display:inline-block;
+
+padding:15px 25px;
+
+border-radius:25px;
+
+font-size:22px;
+
+margin-top:15px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+
+}
+
+
+@keyframes bounce{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+}
