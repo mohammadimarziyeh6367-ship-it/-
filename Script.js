@@ -1,273 +1,143 @@
 alert("بازی آماده است");
+
 let studentName = "";
 let score = 0;
+let selectedCorrect = 0;
 
-let correctWords = [
-    
-    const words = [
+const words = [
 
 {word:"دَر",emoji:"🚪",correct:true},
-
 {word:"دریا",emoji:"🌊",correct:true},
-
 {word:"دوست",emoji:"🤝",correct:true},
-
 {word:"دندان",emoji:"🦷",correct:true},
-
 {word:"دست",emoji:"✋",correct:true},
-
 {word:"دارکوب",emoji:"🐦",correct:true},
-
 {word:"درخت",emoji:"🌳",correct:true},
-
 {word:"دیوار",emoji:"🧱",correct:true},
-
 {word:"دارو",emoji:"💊",correct:true},
-
 {word:"دُلمه",emoji:"🍲",correct:true},
-
 {word:"داغ",emoji:"🔥",correct:true},
-
 {word:"دِل‌درد",emoji:"❤️",correct:true},
 
 {word:"باد",emoji:"🌬️",correct:false},
-
 {word:"سیب",emoji:"🍎",correct:false},
-
 {word:"ماه",emoji:"🌙",correct:false},
-
 {word:"گربه",emoji:"🐱",correct:false},
-
 {word:"گل",emoji:"🌸",correct:false},
-
 {word:"خورشید",emoji:"☀️",correct:false}
 
 ];
-];
 
-let wrongWords = [
-    "باد",
-    "سیب",
-    "ماه",
-    "گربه",
-    "گل",
-    "خورشید"
-];
+document.getElementById("startBtn").onclick=function(){
 
-let allWords = [...correctWords, ...wrongWords];
+studentName=document.getElementById("studentName").value;
 
-let selectedCorrect = 0;
+if(studentName==""){
 
+alert("نامت را وارد کن 🌸");
 
-// شروع بازی
+return;
 
-document.getElementById("startBtn").onclick = function(){
+}
 
-    studentName =
-    document.getElementById("studentName").value;
+let gender=document.querySelector('input[name="gender"]:checked').value;
 
-    if(studentName === ""){
-        alert("لطفاً نامت را وارد کن 😊");
-        return;
-    }
+document.getElementById("avatar").innerHTML=
 
+gender=="boy" ? "👦":"👧";
 
-    let gender =
-    document.querySelector(
-        'input[name="gender"]:checked'
-    ).value;
+document.getElementById("showName").innerHTML=studentName;
 
+document.getElementById("startPage").style.display="none";
 
-    if(gender === "boy"){
-        document.getElementById("avatar").innerHTML="👦";
-    }
-    else{
-        document.getElementById("avatar").innerHTML="👧";
-    }
+document.getElementById("gamePage").style.display="block";
 
+createCards();
 
-    document.getElementById("showName").innerHTML =
-    studentName;
-
-
-    document.getElementById("startPage").style.display="none";
-
-    document.getElementById("gamePage").style.display="block";
-
-
-    createCards();
-
-};
-
-
-
-// ساخت کارت‌ها
+}
 
 function createCards(){
 
-    let box =
-    document.getElementById("cards");
+let box=document.getElementById("cards");
 
-    box.innerHTML="";
+box.innerHTML="";
 
+words.sort(()=>Math.random()-0.5);
 
-    allWords.sort(
-        ()=> Math.random()-0.5
-    );
+words.forEach(item=>{
 
+let card=document.createElement("button");
 
-    allWords.forEach(word=>{
+card.className="wordCard";
 
+card.innerHTML=
 
-        let card =
-        document.createElement("button");
+item.emoji+"<br>"+item.word;
 
+card.onclick=function(){
 
-        card.className="wordCard";
+checkWord(item,card);
 
-        card.innerHTML =
-`
-<div style="font-size:55px">
-${item.emoji}
-</div>
+};
 
-<div style="margin-top:10px">
-${item.word}
-</div>
-`;
+box.appendChild(card);
 
-
-        card.onclick=function(){
-
-            checkWord(word,card);
-
-        };
-
-
-        box.appendChild(card);
-
-
-    });
+});
 
 }
 
+function checkWord(item,card){
 
+if(card.disabled)return;
 
-// بررسی جواب
+card.disabled=true;
 
-function checkWord(word,card){
+if(item.correct){
 
+score++;
 
-    if(card.disabled){
-        return;
-    }
+selectedCorrect++;
 
+card.classList.add("correct");
 
-    card.disabled=true;
+document.getElementById("message").innerHTML=
 
-
-    if(correctWords.includes(word)){
-
-
-        score++;
-
-        selectedCorrect++;
-
-
-        card.classList.add("correct");
-
-        createStars();
-
-        document.getElementById("message").innerHTML =
-        "🌟 آفرین! این کلمه با د شروع می‌شود";
-
-       
-        document.querySelector(".speech").innerHTML =
-        "👏 عالی بود! یک ستاره گرفتی ⭐";
-    }
-
-    else{
-
-
-        card.classList.add("wrong");
-
-
-        document.getElementById("message").innerHTML =
-        "😊 دوباره فکر کن";
-
-       document.querySelector(".speech").innerHTML =
-           
-  "😊 دوباره نگاه کن، تو می‌تونی!";
-
-    }
-
-
-    document.getElementById("score").innerHTML =
-    score;
-
-
-    if(selectedCorrect === correctWords.length){
-
-        finishGame();
-
-    }
+"🌟 آفرین";
 
 }
-let percent =
-(selectedCorrect / correctWords.length) * 100;
 
-document.getElementById("progress").style.width =
-percent + "%";
+else{
 
-document.getElementById("progressText").innerHTML =
-Math.round(percent) + "%";
+card.classList.add("wrong");
 
+document.getElementById("message").innerHTML=
 
-// پایان بازی
+"😊 دوباره تلاش کن";
+
+}
+
+document.getElementById("score").innerHTML=score;
+
+if(selectedCorrect==12){
+
+finishGame();
+
+}
+
+}
 
 function finishGame(){
-
 
 document.getElementById("gamePage").style.display="none";
 
 document.getElementById("finishPage").style.display="block";
 
+document.getElementById("resultName").innerHTML=
 
-document.getElementById("resultName").innerHTML =
-"آفرین " + studentName + " 👏🏻";
+"آفرین "+studentName+" 👏";
 
+document.getElementById("finalScore").innerHTML=
 
-document.getElementById("finalScore").innerHTML =
-score + " از " + correctWords.length;
-
-
-}
-function createStars(){
-
-for(let i=0;i<15;i++){
-
-let star=document.createElement("div");
-
-star.innerHTML="⭐";
-
-star.style.position="fixed";
-
-star.style.left=Math.random()*window.innerWidth+"px";
-
-star.style.top=Math.random()*window.innerHeight+"px";
-
-star.style.fontSize="30px";
-
-star.style.zIndex="999";
-
-document.body.appendChild(star);
-
-setTimeout(()=>{
-
-star.remove();
-
-},1000);
-
-}
+score+" از 12";
 
 }
