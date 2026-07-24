@@ -47,62 +47,61 @@ console.log("cards created");
 
 
 function createCards(){
+function createCards(){
+
+let box = document.getElementById("cards");
+
+if(!box){
+
+alert("بخش کارت‌ها پیدا نشد");
+
+return;
+
+}
+
+box.innerHTML = "";
+
+words.forEach(function(item){
+
+let card = document.createElement("button");
+
+card.className = "wordCard";
+
+card.innerHTML = item.word;
 
 
-let box=document.getElementById("cards");
-
-box.innerHTML="";
-
-
-words.sort(()=>Math.random()-0.5);
-
-
-words.forEach(item=>{
-
-
-let card=document.createElement("button");
-
-
-card.className="wordCard";
-
-
-card.innerHTML=
-  
-item.word;
-
-card.onclick=function(){
-
+card.onclick = function(){
 
 if(item.correct){
-
 
 score++;
 
 card.classList.add("correct");
 
-document.getElementById("message").innerHTML=
+document.getElementById("message").innerHTML =
 "🌟 آفرین درست بود";
-
 
 }
 
 else{
 
-
 card.classList.add("wrong");
 
-document.getElementById("message").innerHTML=
+document.getElementById("message").innerHTML =
 "😊 دوباره تلاش کن";
-
 
 }
 
-
-document.getElementById("score").innerHTML=score;
-
+document.getElementById("score").innerHTML = score;
 
 };
 
+
+box.appendChild(card);
+
+});
+
+}
 
 box.appendChild(card);
 
