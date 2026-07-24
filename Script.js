@@ -67,9 +67,8 @@ card.className="wordCard";
 
 
 card.innerHTML=
-item.emoji+"<br>"+item.word;
-
-
+  
+item.word;
 
 card.onclick=function(){
 
