@@ -108,6 +108,6 @@ box.appendChild(card);
 
 
 });
-
+}
 
 }
