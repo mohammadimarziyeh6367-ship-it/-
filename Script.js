@@ -1,4 +1,4 @@
-
+console.log("script OK");
 let studentName = "";
 let score = 0;
 
@@ -41,7 +41,7 @@ document.getElementById("gamePage").style.display="block";
 
 
 createCards();
-
+console.log("cards created");
 };
 
 
